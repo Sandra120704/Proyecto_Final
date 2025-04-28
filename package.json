@@ -8,8 +8,19 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "express": "^5.1.0"
-  }
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.14.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sandra120704/Proyecto_Final.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sandra120704/Proyecto_Final/issues"
+  },
+  "homepage": "https://github.com/Sandra120704/Proyecto_Final#readme",
+  "description": ""
 }
