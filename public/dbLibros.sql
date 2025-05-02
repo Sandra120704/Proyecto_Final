@@ -32,6 +32,16 @@ INSERT INTO Libros (Id_Autores, Titulo, Editorial, Fecha_P, Genero) VALUES
 (3, '2001: A Space Odyssey', 'New American Library', '1968-07-01', 'Cientificos'),
 (4, 'La Evolución de las Especies', 'Ediciones B', '2005-03-15', 'Didacticos');
 
+ SELECT 
+	Libros.Id_Libros, 
+    Libros.Titulo,
+    Libros.Editorial, 
+    Libros.Fecha_P, 
+    Libros.Genero, 
+    autores.Nombre AS Autor
+    FROM Libros
+    INNER JOIN autores ON Libros.Id_Autores = autores.Id_Autores
+
 
 
 

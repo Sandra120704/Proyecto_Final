@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^2.2.0",
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
     "mysql": "^2.18.1",
     "mysql2": "^3.14.1"
@@ -22,5 +23,8 @@
     "url": "https://github.com/Sandra120704/Proyecto_Final/issues"
   },
   "homepage": "https://github.com/Sandra120704/Proyecto_Final#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  },
   "description": ""
 }

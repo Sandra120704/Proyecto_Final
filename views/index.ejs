@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
   <title>Primera Pagina</title>
 </head>
 <body>
   
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+      <a class="navbar-brand" href="#">Inicio</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -43,6 +44,39 @@
       </div>
     </div>
   </nav>
+
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <thead>  
+        <tr><h1 class="text-center">Listado de Libros</h1></tr>
+        <tr>
+          <th>Id</th>
+          <th>Titulo</th>
+          <th>Editorial</th>
+          <th>Fecha de Publicación</th>
+          <th>Genero</th>
+          <th>Autor</th>
+          <th>Operaciones</th>
+        </tr>
+      </thead>
+      <tbody>
+         <% Libros.forEach(Libro => { %>
+          <tr>
+            <td><%= Libro.Id_Libros %></td>
+            <td><%= Libro.Titulo %></td>
+            <td><%= Libro.Editorial %></td>
+            <td><%= Libro.Fecha_P %></td>
+            <td><%= Libro.Genero %></td>
+            <td><%= Libro.Autor %></td>
+            <td>
+              <a href="/edit/<%= Libro.Id_Libros %>" class="btn btn-sm btn-info edit">Editar</a>
+              <a href="/delete/<%= Libro.Id_Libros %>" class="btn btn-sm btn-danger delete">Eliminar</a>
+            </td>  
+          </tr>
+         <% }) %>
+  </div>
+</table>
+
 
 </body>
 </html>

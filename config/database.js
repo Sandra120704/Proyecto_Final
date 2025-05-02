@@ -1,16 +1,21 @@
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 
-const conxion = mysql.createConnection({
+const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'tiendaL'
 });
 
-conxion.connect((error) => {
-  if(error){
-    console.error('Error al conectar la base de datos:'. error);
-    return;
+async function testConnexion(){
+  try{
+    const connection = await pool.getConnection();
+    console.log('Conexion exitosa a la base de datos MySql');
+    connection.release();
+  } catch(error){
+    console.error("Error:", error);
   }
-  console.log('Conexion exitosa a la base de datos MySql');
-});
+}
+
+   testConnexion();
+   module.exports = pool;
