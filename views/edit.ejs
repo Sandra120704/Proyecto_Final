@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <title>Document</title>
+</head>
+<body>
+  <form action="/edit" id="formulario-Registro" autocomplete="off" method="post" >
+    <div class="card mt-2">
+      <div class="card-header"><strong>Actualizacion De Libros</strong></div>
+
+      <div class="card-body">
+
+        <div class="row g-2">
+          <div class="col-md-6 mb-2">
+            <div class="form-floating">
+              <select class="form-select" name="Id_Autores" id="Id_Autores" required>
+                <% autores.forEach(autor => { %>
+                  <option value="<%= autor.Id_Autores %>"><%= autor.Nombre %></option>
+                <% }) %>
+              </select>
+              <label for="Id_Autores">Autor</label>
+              
+            </div>
+          </div>
+         <div class="col-md-6 mb-2">
+          <div class="form-floating">
+            <input type="text" value="<%= Libros.Titulo %>" class="form-control" id="Titulo" name="Titulo" placeholder="Titulo">
+            <label for="Titulo">Titulo</label>  
+          </div>
+        </div>
+    </div>
+        <div class="row g-2">
+          <div class="col-md-6 mb-2">
+           <div class="form-floating">
+            <input type="text" value="<%= Libros.Editorial %>" class="form-control" id="Editorial" name="Editorial" placeholder="Editorial">
+            <label for="Editorial">Editorial</label>
+          </div>
+         </div>
+
+         <div class="col-md-6 mb-2">
+          <div class="form-floating">
+           <input type="date" value="<%= Libros.Fecha_P %>" class="form-control" id="Fecha_P" name="Fecha_P" placeholder="Fecha de Publicación">
+          </div>
+        </div>
+      </div>
+      <div class="row g-2">
+        <div class="col-md-6 mb-2">
+         <div class="form-floating">
+          <select name="Genero" class="form-select" id="Genero" required>
+            <option value="" selected disabled>Seleccione</option>
+            <option value="Ficcion" <%= Libros.Genero === 'Ficcion' ? 'selected' : '' %>>Ficcion</option>
+            <option value="Animado" <%= Libros.Genero === 'Animado' ? 'selected' : '' %>>Animado</option>
+            <option value="Cientificos" <%= Libros.Genero === 'Cientificos' ? 'selected' : '' %>>Cientificos</option>
+            <option value="Dramatico" <%= Libros.Genero === 'Dramatico' ? 'selected' : '' %>>Dramatico</option>
+            <option value="Didacticos" <%= Libros.Genero === 'Didacticos' ? 'selected' : '' %>>Didacticos</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <div class="card-footer">
+          <button type="submit" class="btn btn-sm btn-primary">Actualizar</button>
+          <a href="/" class="btn btn-sm btn-secondary">Cancelar</a>
+        </div>
+    </div>
+  </form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const formulario = document.getElementById('formulario-Registro');
+
+      formulario.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        Swal.fire({
+        title: 'Libros Registrados',
+        text: '¿Está seguro de actualizar el libreo?',
+        icon: 'question',
+        footer: 'SENATI - Proyecto Final',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#2980b9',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+        cancelButtonColor: '#c0392b'
+      }).then((result) => {
+        if (result.isConfirmed){
+          formulario.submit()
+        }
+      })
+
+    })
+  })
+  </script>
+</body>
+</html>

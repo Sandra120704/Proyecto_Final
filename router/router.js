@@ -22,4 +22,64 @@ router.get('/', async(req, res) =>{
   }
 });
 
-module.exports = router
+//Ruta De Crear Libros
+router.get('/create', async(req, res) =>{
+  try{
+    const [autores] = await db.query("SELECT * FROM autores")  
+    res.render('create', {autores});
+  }catch(error){
+    console.error(error)
+  }
+});
+
+//Ruta De Crear Libros
+router.post('/create', async(req, res) =>{
+  try{
+    const query = `
+      INSERT INTO Libros (Id_Autores, Titulo, Editorial, Fecha_P, Genero) VALUES (?, ?, ?, ?, ?)
+    `
+    const [id] = await db.query(query, [req.body.Id_Autores, req.body.Titulo, req.body.Editorial, req.body.Fecha_P, req.body.Genero]);
+    res.redirect('/');
+  }catch(error){
+    console.error(error)
+  }
+});
+
+//Ruta De Editar Libros
+router.get('/edit/:id', async(req, res) =>{
+  try{
+    const [datos] = await db.query("SELECT * FROM autores")
+    const [registros] = await db.query("SELECT * FROM Libros WHERE Id_Libros = ?", [req.params.id])
+
+    if(registros.length > 0)
+      res.render('edit', {autores: datos, Libros: registros[0]})
+      else
+      res.redirect('/')
+    
+  }catch(error){
+    console.error(error)
+  }
+});
+
+//Ruta De Editar Libros
+router.post('/edit', async(req, res) =>{
+  try{
+    const {autores, Titulo, Editorial, Fecha_P, Genero} = req.body
+    await db.query (" UPDATE Libros SET Titulo = ?, Editorial = ?, Fecha_P = ?, Genero = ? WHERE Id_Libros = ?",
+      [autores,Titulo, Editorial, Fecha_P, Genero, req.params.id])
+      res.redirect('/')
+  }catch(error){
+    console.error(error)
+  }
+});
+
+//Ruta De Eliminar Libros
+router.get('/delete/:id', async(req, res) =>{
+  try{
+    await db.query("DELETE FROM Libros WHERE Id_Libros = ?", [req.params.id])
+    res.redirect('/')
+  }catch(error){
+    console.error(error)
+  }
+});
+module.exports = router;

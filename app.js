@@ -14,6 +14,9 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use('/', router);
 
+app.use(express.static('public'));
+
+
 
 app.get('/', (req, res) => {
 res.render('index', {Libros: Libros});

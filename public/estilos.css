@@ -1,0 +1,10 @@
+.nav-linck:hover{
+  color: #ffdd57 ;
+  transition: color 0.10s ease;
+}
+.navbar{
+  transition: blackground-color 0.3s ease;
+}
+.navbar:hover{
+  background-color: #004080;
+}
