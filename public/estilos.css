@@ -1,10 +1,22 @@
+body {
+  background-color: #e9f3fd;
+}
+
 .nav-linck:hover{
   color: #ffdd57 ;
   transition: color 0.10s ease;
 }
 .navbar{
-  transition: blackground-color 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 .navbar:hover{
   background-color: #004080;
 }
+.table-responsive { 
+  background-color: #ffb8b8;
+}
+.my-custom-table .btn {
+  margin: 0 5px;
+}
+
+

@@ -9,7 +9,7 @@ router.get('/', async(req, res) =>{
 	     Libros.Id_Libros, 
         Libros.Titulo,
         Libros.Editorial, 
-        Libros.Fecha_P, 
+        DATE_FORMAT(Libros.Fecha_P, '%Y/%m/%d') AS Fecha_P,
         Libros.Genero, 
         autores.Nombre AS Autor
       FROM Libros
