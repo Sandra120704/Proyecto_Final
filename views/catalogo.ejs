@@ -33,7 +33,6 @@
     </div>
   </nav>
 
-  <div class="container">
 
   <div class="card text-center">
     <div class="card-header">
@@ -42,10 +41,7 @@
           <a class="nav-link active" id="promo-tab" data-bs-toggle="pill" href="#Promo" role="tab"  aria-controls="Promo" aria-selected="true">Promociones</a>
         </li>
         <li class="nav-item" role="presentation">
-          <a class="nav-link" id="cover-tab"  data-bs-toggle="pill" role="tab"  href="#cover" aria-selected="false" aria-disabled="true">Coberturas</a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link disabled" id="disc-tab" data-bs-toggle="tab"  role="tab" href="#disc" aria-disabled="true" aria-controls="disc" aria-selected="false">Descuentos</a>
+          <a class="nav-link" id="cover-tab"  data-bs-toggle="pill" role="tab"  href="#cover" aria-selected="false" aria-disabled="true">Nuestras Tiendas Fisica</a>
         </li>
       </ul>
     </div>
@@ -65,12 +61,41 @@
         </iframe>
         </div>
       </div>
-      <div class="tab-pane fade" id="disc" role="tabpanel" aria-labelledby="disc-tab">
-        <h5 class="card-title">Descuentos</h5>
-        <p class="card-text">Descubre las mejores ofertas de descuentos.</p>
-        <a href="#" class="btn btn-primary">Ver Descuentos</a>
-      </div> 
-  </div>
+   </div>
+ </div>
+
+ 
+
+  
+  <div class="container mt-4">
+    <div class="row">
+      <!-- Buscador de libros -->
+      <div class="col-md-4 mb-3">
+        <input type="text" class="form-control" id="productSearch" placeholder="Buscar libros...">
+      </div>
+    
+      <!-- Buscador por Categoría -->
+      <div class="col-md-4 mb-3">
+        <select class="form-select" id="categorySearch">
+          <option value="">Selecciona una categoría</option>
+          <option value="Ficcion">Ficcion</option>
+          <option value="Dramatico">Dramatico</option>
+          <option value="Cientifico">Cientifico</option>
+          <option value="Dictactico">Dicdactico</option>
+        </select>
+      </div>
+
+      <!-- Ordenar por Precio -->
+      <div class="col-md-4 mb-3">
+        <select class="form-select" id="priceSort">
+          <option value="asc">Ordenar  Menor a mayor</option>
+          <option value="desc">Ordenar Mayor a menor</option>
+        </select>
+      </div>
+    </div>
+
+    
+   <div class="container">
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col">
@@ -200,11 +225,7 @@
               <button class="btn btn-success mb-2 w-100">Añadir al Carrito</button>
               <button class="btn btn-primary w-100">Comprar</button>
             </div>
-            
           </div>
-        <div class="card-footer">
-          <small class="text-body-secondary">Last updated 3 mins ago</small>
-        </div>
       </div>
     <div class="col">
       <div class="card h-100">
@@ -221,9 +242,6 @@
           </div>
           
         </div>
-        <div class="card-footer">
-          <small class="text-body-secondary">Last updated 3 mins ago</small>
-        </div>
       </div>
     <div class="col">
       <div class="card h-100">
@@ -239,13 +257,88 @@
             <button class="btn btn-primary w-100">Comprar</button>
           </div>
         </div>
-        <div class="card-footer">
-          <small class="text-body-secondary">Last updated 3 mins ago</small>
-        </div>
       </div>
     </div>
-    <a href="#" class="btn btn-primary mb-2 w-100">Ver Mas...</a>
   </div>
+
+ <div class="text-center">
+    <a href="#" class="btn btn-primary mb-2" style="width: 150px;">Ver Más...</a>
+  </div>
+</div>
+
+<script>
+  const productSearch = document.getElementById('productSearch');
+  const categorySearch = document.getElementById('categorySearch');
+  const priceSort = document.getElementById('priceSort');
+  const bookList = document.querySelectorAll('.book');
+
+const books = [
+  { title : "El Principito", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro1.jpeg" },
+  { title : "La Odisea", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro2.jpeg" },
+  { title : "Los Rios Profundos", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro3.jpeg" },
+  { title : "El Mundo es Ancho y Ajeno", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro4.jpeg" },
+  { title : "La Casa Verde", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro5.jpeg" },
+  { title : "Todas las Sangres", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro6.jpeg" },
+  { title : "Un Mundo para Julius", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro7.jpeg" },
+  { title : "No Una, Sino Muchas Muertes", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro8.jpeg" },
+  { title : "Redoble por Rancas", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro9.jpeg" },
+  { title : "La Guerra Silenciosa", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro10.jpeg" },
+];
+
+//mostrar todos los libros
+function displayBooks() {
+  let filteredBooks = books;
+
+
+  if (productSearch.value) {
+    filteredBooks = books.filter(book => book.title.toLowerCase().includes(productSearch.value.toLowerCase()));
+  }
+
+  //categoria de libros
+  
+  if (categorySearch.value) {
+    filteredBooks = filteredBooks.filter(book => book.category === categorySearch.value);
+  }
+
+  //ordenar por precio
+
+   if (priceSort.value == 'asc') {
+    filteredBooks = filteredBooks.sort((a, b) => a.price - b.price);
+  }
+
+  else if (priceSort.value == 'desc') {
+    filteredBooks = filteredBooks.sort((a, b) => b.price - a.price);
+  }
+  //mostrar libros filtrados
+  bookList.innerHTML = "";
+  filteredBooks.forEach(book => {
+    const bookCard = `
+      <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="${book.img}" class="card-img-top" alt="${book.title}">
+            <div class="card-body">
+              <h5 class="card-title">${book.title}</h5>
+              <p class="card-text">Categoría: ${book.category}</p>
+              <p><strong>$${book.price}</strong></p>
+              <a href="#" class="btn btn-primary">Añadir al carrito</a>
+            </div>
+          </div>
+        </div>
+      `;
+      booksList.innerHTML += bookCard;
+    });
+  }
+  //eventos de los filtros
+  productSearch.addEventListener('input', displayBooks);
+  categorySearch.addEventListener('change', displayBooks);
+  priceSort.addEventListener('change', displayBooks);
+
+  displayBooks();
+</script>
+  
+  <footer class="text-center">
+    <p>Copyright © 2023 SENATI - Proyecto Final</p>
+  </footer>
   
 
 </body>
