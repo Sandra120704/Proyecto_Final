@@ -7,6 +7,7 @@
   <title>Document</title>
 </head>
 <body>
+
   <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Inicio</a>
@@ -33,6 +34,7 @@
     </div>
   </nav>
 
+  <!-- Navegación de la página -->
 
   <div class="card text-center">
     <div class="card-header">
@@ -64,8 +66,7 @@
    </div>
  </div>
 
- 
-
+ <!-- Buscador de libros -->
   
   <div class="container mt-4">
     <div class="row">
@@ -95,6 +96,9 @@
     </div>
 
     
+
+    <!-- Mostrar libros filtrados -->
+     
    <div class="container">
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -155,7 +159,7 @@
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col">
-      <div class="card h-100">
+      <div class="ca  rd h-100">
         <img src="img/libro4.jpeg" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
         <div class="card-body">
           <h5 class="card-title">El Mundo es Ancho y Ajeno</h5>
@@ -266,23 +270,27 @@
   </div>
 </div>
 
+<!-- Script para mostrar los libros filtrados -->
 <script>
   const productSearch = document.getElementById('productSearch');
   const categorySearch = document.getElementById('categorySearch');
   const priceSort = document.getElementById('priceSort');
-  const bookList = document.querySelectorAll('.book');
+  const bookList = document.getElementById('booksList');
 
 const books = [
   { title : "El Principito", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro1.jpeg" },
-  { title : "La Odisea", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro2.jpeg" },
+  { title : "La Odisea", author : "Rick Riordan", price : 15.99, category : "Dramatico", image : "img/libro2.jpeg" },
   { title : "Los Rios Profundos", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro3.jpeg" },
-  { title : "El Mundo es Ancho y Ajeno", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro4.jpeg" },
+  { title : "El Mundo es Ancho y Ajeno", author : "Rick Riordan", price : 15.99, category : "Dramatico", image : "img/libro4.jpeg" },
   { title : "La Casa Verde", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro5.jpeg" },
-  { title : "Todas las Sangres", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro6.jpeg" },
+  { title : "Todas las Sangres", author : "Rick Riordan", price : 15.99, category : "Dramatico", image : "img/libro6.jpeg" },
   { title : "Un Mundo para Julius", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro7.jpeg" },
-  { title : "No Una, Sino Muchas Muertes", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro8.jpeg" },
+  { title : "No Una, Sino Muchas Muertes", author : "Rick Riordan", price : 15.99, category : "Dramatico", image : "img/libro8.jpeg" },
   { title : "Redoble por Rancas", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro9.jpeg" },
-  { title : "La Guerra Silenciosa", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro10.jpeg" },
+  { title : "La Guerra Silenciosa", author : "Rick Riordan", price : 15.99, category : "Dramatico", image : "img/libro10.jpeg" },
+  { title : "Ciencia Fácil", author : "Jane Doe", price : 20.00, category : "Cientifico", image : "img/libro11.jpeg" },
+{ title : "El Universo", author : "Carl Sagan", price : 25.00, category : "Cientifico", image : "img/libro12.jpeg" },
+
 ];
 
 //mostrar todos los libros
@@ -291,41 +299,45 @@ function displayBooks() {
 
 
   if (productSearch.value) {
-    filteredBooks = books.filter(book => book.title.toLowerCase().includes(productSearch.value.toLowerCase()));
-  }
+    filteredBooks = filteredBooks.filter(book => {
+      book.title.toLowerCase().includes(productSearch.value.toLowerCase())
+      });
+    }
 
   //categoria de libros
   
   if (categorySearch.value) {
-    filteredBooks = filteredBooks.filter(book => book.category === categorySearch.value);
+    filteredBooks = filteredBooks.filter(book => 
+    book.category === categorySearch.value);
   }
 
   //ordenar por precio
 
    if (priceSort.value == 'asc') {
-    filteredBooks = filteredBooks.sort((a, b) => a.price - b.price);
-  }
-
-  else if (priceSort.value == 'desc') {
-    filteredBooks = filteredBooks.sort((a, b) => b.price - a.price);
+    filteredBooks.sort((a, b) => a.price - b.price);
+  }else if (priceSort.value == 'desc') {
+   filteredBooks.sort((a, b) => b.price - a.price);
   }
   //mostrar libros filtrados
   bookList.innerHTML = "";
-  filteredBooks.forEach(book => {
-    const bookCard = `
+  if (filteredBooks.length === 0) {
+     booksList.innerHTML = "<p>No hay libros que coincidan con tus criterios de búsqueda</p>";
+  }else{
+    filteredBooks.forEach(book => {
+     const bookCard = `
       <div class="col-md-4 mb-4">
-          <div class="card">
-            <img src="${book.img}" class="card-img-top" alt="${book.title}">
-            <div class="card-body">
-              <h5 class="card-title">${book.title}</h5>
-              <p class="card-text">Categoría: ${book.category}</p>
-              <p><strong>$${book.price}</strong></p>
-              <a href="#" class="btn btn-primary">Añadir al carrito</a>
+              <div class="card">
+                <img src="${book.image}" class="card-img-top" alt="${book.title}">
+                <div class="card-body">
+                  <h5 class="card-title">${book.title}</h5>
+                  <p class="card-text">Categoría: ${book.category}</p>
+                  <p><strong>$${book.price}</strong></p>
+                  <a href="#" class="btn btn-primary">Añadir al carrito</a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
       `;
-      booksList.innerHTML += bookCard;
+      bookList.innerHTML += bookCard;
     });
   }
   //eventos de los filtros
