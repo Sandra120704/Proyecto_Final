@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <title>Document</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Inicio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/create">Crear Libro</a>
+          </li>
+          <li class="nav-item">  
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/create">Crear Libro</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2 rounded-pill" type="search" placeholder="Buscar Libros" aria-label="Search">
+          <button class="btn btn-warning rounded-pill" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-pills card-header-pills" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" id="promo-tab" data-bs-toggle="pill" href="#Promo" role="tab"  aria-controls="Promo" aria-selected="true">Promociones</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" id="cover-tab"  data-bs-toggle="pill" role="tab"  href="#cover" aria-selected="false" aria-disabled="true">Coberturas</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link disabled" id="disc-tab" data-bs-toggle="tab"  role="tab" href="#disc" aria-disabled="true" aria-controls="disc" aria-selected="false">Descuentos</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body tab-content" id="pills-tabContent">
+      <div class="tab-pane fade show active" id="Promo" role="tabpanel" aria-labelledby="promo-tab">
+        <h5 class="card-title">Promociones Exclusivas</h5>
+        <img src="img/imagen1.jpg" class="img-fluid rounded mb-3" alt="Imagen de prueba">
+
+        <p class="card-text">Disfruta de descuentos increibles y únicos.</p>
+        <a href="#" class="btn btn-primary">Ver Promociones</a>
+      </div>
+      <div class="tab-pane fade" id="cover" role="tabpanel" aria-labelledby="cover-tab">
+        <h5 class="card-title">Coberturas</h5>
+        <div class="ratio ratio-16x9 mb-3">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d32553.6620872046!2d-76.13638181191934!3d-13.424623888082738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1746237641295!5m2!1ses-419!2spe" 
+          width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="disc" role="tabpanel" aria-labelledby="disc-tab">
+        <h5 class="card-title">Descuentos</h5>
+        <p class="card-text">Descubre las mejores ofertas de descuentos.</p>
+        <a href="#" class="btn btn-primary">Ver Descuentos</a>
+      </div> 
+  </div>
+  
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+</html>

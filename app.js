@@ -5,6 +5,7 @@ const path = require('path')
 const app = express();
 const router = require('./router/router');
 const PORT = process.env.PORT || 3000
+app.use('/', require('./router/router'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -13,6 +14,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 app.use('/', router);
+
+
 
 app.use(express.static('public'));
 

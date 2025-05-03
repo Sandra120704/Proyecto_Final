@@ -36,7 +36,7 @@ router.get('/create', async(req, res) =>{
 router.post('/create', async(req, res) =>{
   try{
     const query = `
-      INSERT INTO Libros (Id_Autores, Titulo, Editorial, Fecha_P, Genero) VALUES (?, ?, ?, ?, ?)
+      INSERT INTO Libros (Id_Autores, Titulo, Editorial, Fecha_P, Genero, Estado) VALUES ( ?, ?, ?, ?, ?, 'disponible')
     `
     const [id] = await db.query(query, [req.body.Id_Autores, req.body.Titulo, req.body.Editorial, req.body.Fecha_P, req.body.Genero]);
     res.redirect('/');
@@ -64,10 +64,47 @@ router.get('/edit/:id', async(req, res) =>{
 //Ruta De Editar Libros
 router.post('/edit', async(req, res) =>{
   try{
-    const {autores, Titulo, Editorial, Fecha_P, Genero} = req.body
-    await db.query (" UPDATE Libros SET Titulo = ?, Editorial = ?, Fecha_P = ?, Genero = ? WHERE Id_Libros = ?",
-      [autores,Titulo, Editorial, Fecha_P, Genero, req.params.id])
+    const {Id_Libros,Id_Autores, Titulo, Editorial, Fecha_P, Genero} = req.body
+    await db.query (
+      " UPDATE Libros SET Titulo = ?, Editorial = ?, Fecha_P = ?, Genero = ? WHERE Id_Libros = ?",
+      [Id_Autores,Titulo, Editorial, Fecha_P, Genero, req.params.id])
       res.redirect('/')
+  }catch(error){
+    console.error(error)
+  }
+});
+
+//Ruta De Ver Catalogo
+router.get('/catalogo', async(req, res) =>{
+  try{
+    const query = `
+     SELECT 
+        Libros.Id_Libros, 
+        Libros.Titulo,
+        Libros.Editorial,
+        DATE_FORMAT(Libros.Fecha_P, '%Y/%m/%d') AS Fecha_P,
+        Libros.Genero,
+        autores.Nombre AS Autor,
+        Libros.Descripcion,
+        Libros.Precio,
+        Libros.Estado
+      FROM Libros
+      INNER JOIN autores ON Libros.Id_Autores = autores.Id_Autores
+      WHERE Libros.Estado = 'Disponible'
+    `;
+    const [Libros] = await db.query(query);
+    res.render('catalogo', {Libros});
+  }catch(error){
+    console.error(error);
+    res.status(500).send('Error al obtener los libros');
+  }
+});
+
+//vender{}
+router.get('/vender/:id', async(req, res) =>{
+  try{
+    await db.query("UPDATE Libros SET Estado = 'Vendido' WHERE Id_Libros = ?", [req.params.id])
+    res.redirect('/productos')
   }catch(error){
     console.error(error)
   }

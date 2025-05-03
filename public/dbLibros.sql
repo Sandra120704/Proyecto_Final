@@ -19,6 +19,10 @@ CREATE TABLE Libros(
     CONSTRAINT fk_idautores FOREIGN KEY (Id_Autores) REFERENCES autores(Id_Autores)
 )ENGINE = INNODB;
 ALTER TABLE Libros MODIFY Id_Libros INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE Libros ADD COLUMN Descripcion TEXT;
+ALTER TABLE Libros ADD COLUMN Precio DECIMAL(10,2);
+ALTER TABLE Libros ADD COLUMN Estado ENUM('Disponible', 'Vendido') DEFAULT 'Disponible';
+
 
 INSERT INTO autores (Nombre) VALUES
     ('Charles John Huffam Dickens'),
@@ -40,7 +44,20 @@ INSERT INTO Libros (Id_Autores, Titulo, Editorial, Fecha_P, Genero) VALUES
     Libros.Genero, 
     autores.Nombre AS Autor
     FROM Libros
-    INNER JOIN autores ON Libros.Id_Autores = autores.Id_Autores
+    INNER JOIN autores ON Libros.Id_Autores = autores.Id_Autores;
+    
+     SELECT 
+        Libros.Id_Libros, 
+        Libros.Titulo,
+        Libros.Editorial, 
+        DATE_FORMAT(Libros.Fecha_P, '%Y/%m/%d') AS Fecha_P,
+        Libros.Genero, 
+        autores.Nombre AS Autor,
+        Libros.Estado
+      FROM Libros
+      INNER JOIN autores ON Libros.Id_Autores = autores.Id_Autores
+      WHERE Libros.Estado = 'Disponible'
+    
 
 
 
