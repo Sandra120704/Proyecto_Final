@@ -8,19 +8,23 @@
  <title>Document</title>
 </head>
 <body>
-  <form action="/edit" id="formulario-Registro" autocomplete="off" method="post" >
+  <form action="/edit/<%= Libros.Id_Libros %>"  id="formulario-Registro" autocomplete="off" method="post" >
     <div class="card mt-2">
       <div class="card-header"><strong>Actualizacion De Libros</strong></div>
 
       <div class="card-body">
+
+        <input type="hidden" name="Id_Libros" value="<%= Libros.Id_Libros %>">
 
         <div class="row g-2">
           <div class="col-md-6 mb-2">
             <div class="form-floating">
               <select class="form-select" name="Id_Autores" id="Id_Autores" required>
                 <% autores.forEach(autor => { %>
-                  <option value="<%= autor.Id_Autores %>"><%= autor.Nombre %></option>
-                <% }) %>
+                  <option value="<%= autor.Id_Autores %>" <%= autor.Id_Autores === Libros.Id_Autores ? 'selected' : '' %>>
+                    <%= autor.Nombre %>
+                  </option>
+                    <% }) %>
               </select>
               <label for="Id_Autores">Autor</label>
               

@@ -22,10 +22,11 @@
                   <option value="<%= autor.Id_Autores %>"><%= autor.Nombre %></option>
                 <% }) %>
               </select>
+                           
               <label for="Id_Autores">Autor</label>
-              
             </div>
           </div>
+
          <div class="col-md-6 mb-2">
           <div class="form-floating">
             <input type="text" class="form-control" id="Titulo" name="Titulo" placeholder="Titulo">
@@ -33,6 +34,7 @@
           </div>
         </div>
     </div>
+
         <div class="row g-2">
           <div class="col-md-6 mb-2">
            <div class="form-floating">
@@ -41,11 +43,11 @@
           </div>
          </div>
 
-         <div class="col-md-6 mb-2">
-          <div class="form-floating">
-           <input type="date" class="form-control" id="Fecha_P" name="Fecha_P" placeholder="Fecha de Publicación">
-          </div>
+         <div class="form-floating">
+          <input type="date" class="form-control" id="Fecha_P" name="Fecha_P" placeholder="Fecha de Publicación" required>
+          <label for="Fecha_P">Fecha de Publicación</label>
         </div>
+        
       </div>
       <div class="row g-2">
         <div class="col-md-6 mb-2">
@@ -58,6 +60,7 @@
             <option value="Dramatico">Dramatico</option>
             <option value="Didacticos">Didacticos</option>
           </select>
+          <label for="Genero">Género</label>
         </div>
       </div>
     </div>

@@ -6,6 +6,27 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
   <title>Document</title>
 </head>
+<style>
+  body {
+    background: linear-gradient(to right, #f1fafc, #5fa5fa);
+  }
+  .cardC{
+    background-color: linear-gradient(to right, #96ace3, #bdd3ed);
+    border: 1px solid rgb(10, 10, 10);
+    border-radius: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .card{
+    background-color: linear-gradient(to right, #6b8a91, #5fa5fa);
+    border: 1px solid rgb(10, 10, 10);
+    border-radius: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .footer{
+    color: rgb(255, 255, 255);
+    background-color: rgb(33, 56, 112);
+  }
+</style>
 <body>
 
   <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm">
@@ -30,7 +51,7 @@
 
   <!-- Navegación de la página -->
 
-  <div class="card text-center">
+  <div class="card text-center cardC">
     <div class="card-header">
       <ul class="nav nav-pills card-header-pills" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
@@ -63,14 +84,14 @@
  <!-- Buscador de libros -->
   
   <div class="container mt-4">
-    <div class="row">
+    <div class="row justify-content-center">
       <!-- Buscador de libros -->
-      <div class="col-md-4 mb-3">
+      <div class="col-md-4 mb-3 busquedas">
         <input type="text" class="form-control" id="productSearch" placeholder="Buscar libros...">
       </div>
     
       <!-- Buscador por Categoría -->
-      <div class="col-md-4 mb-3">
+      <div class="col-md-4 mb-3 busquedas">
         <select class="form-select" id="categorySearch">
           <option value="">Selecciona una categoría</option>
           <option value="Ficcion">Ficcion</option>
@@ -81,7 +102,7 @@
       </div>
 
       <!-- Ordenar por Precio -->
-      <div class="col-md-4 mb-3">
+      <div class="col-md-4 mb-3 busquedas">
         <select class="form-select" id="priceSort">
           <option value="asc">Ordenar  Menor a mayor</option>
           <option value="desc">Ordenar Mayor a menor</option>
@@ -99,7 +120,7 @@
     <div class="col">
       <div class="card h-100 shadow-sm">
         <img src="img/libro1.jpeg" class="card-img-top" alt="Imagen del libro" style="height: 250px; object-fit: cover;">
-        <div class="card-body">
+        <div class="card-body card">
           <h5 class="card-title">El Principito</h5>
           <p class="card-text">Una novela corta que combina aventura y reflexión, ideal para todas las edades.</p>
         </div>
@@ -151,7 +172,7 @@
   </div>
 
 
-  <div class="row row-cols-1 row-cols-md-3 g-4" >
+  <div class="row row-cols-1 row-cols-md-3 g-4 mt-2" >
     <div class="col">
       <div class="card h-100">
         <img src="img/libro4.jpeg" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
@@ -209,7 +230,7 @@
       </div>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-3 g-4" >
+  <div class="row row-cols-1 row-cols-md-3 g-4 mt-2" >
     <div class="col">
       <div class="card h-100">
         <img src="img/libro7.jpeg" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
@@ -277,7 +298,7 @@
   { title : "Los Rios Profundos", author : "Rick Riordan", price : 10.99, category : "Ficcion", image : "img/libro3.jpeg" },
   { title : "El Mundo es Ancho y Ajeno", author : "Rick Riordan", price : 5.99, category : "Ficcion", image : "img/libro4.jpeg" },
   { title : "La Casa Verde", author : "Rick Riordan", price : 45.99, category : "Ficcion", image : "img/libro5.jpeg" },
-  { title : "Todas las Sangres", author : "Rick Riordan", price : 25.99, category : "Dramatico", image : "img/libro6.jpeg" },
+  { title : "Todas las Sangres", author : "Rick Riordan", price : 25.99, category : "Dramatico", image : "img/libro6.webp" },
   { title : "Un Mundo para Julius", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro7.jpeg" },
   { title : "No Una, Sino Muchas Muertes", author : "Rick Riordan", price : 55.99, category : "Dramatico", image : "img/libro8.jpeg" },
   { title : "Redoble por Rancas", author : "Rick Riordan", price : 45.99, category : "Ficcion", image : "img/libro9.jpeg" },
@@ -339,7 +360,7 @@ renderBooks(books);
 </script>
 
   
-  <footer class="text-center">
+  <footer class="text-center footer">
     <p>Copyright © 2023 SENATI - Proyecto Final</p>
   </footer>
   

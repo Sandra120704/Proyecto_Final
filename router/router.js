@@ -25,25 +25,29 @@ router.get('/', async(req, res) =>{
 //Ruta De Crear Libros
 router.get('/create', async(req, res) =>{
   try{
-    const [autores] = await db.query("SELECT * FROM autores")  
-    res.render('create', {autores});
+    const[datos] = await db.query("SELECT * FROM autores")
+    res.render('create', {autores: datos})
   }catch(error){
     console.error(error)
   }
 });
 
+
 //Ruta De Crear Libros
-router.post('/create', async(req, res) =>{
-  try{
-    const query = `
-      INSERT INTO Libros (Id_Autores, Titulo, Editorial, Fecha_P, Genero, Estado) VALUES ( ?, ?, ?, ?, ?, 'disponible')
-    `
-    const [id] = await db.query(query, [req.body.Id_Autores, req.body.Titulo, req.body.Editorial, req.body.Fecha_P, req.body.Genero]);
-    res.redirect('/');
+router.post('/create', async (req, res) => {
+  try {
+    //obtener datos de la base de datos
+    const {Id_Autores, Titulo, Editorial, Fecha_P, Genero} = req.body
+    //giardar los datos de la base de datos
+    await db.query (`INSERT INTO Libros (Id_Autores, Titulo, Editorial, Fecha_P, Genero) VALUES (?, ?, ?, ?, ?)`, 
+     [Id_Autores, Titulo, Editorial, Fecha_P, Genero])
+     res.redirect('/')
   }catch(error){
     console.error(error)
   }
-});
+})
+
+
 
 //Ruta De Editar Libros
 router.get('/edit/:id', async(req, res) =>{
@@ -62,17 +66,20 @@ router.get('/edit/:id', async(req, res) =>{
 });
 
 //Ruta De Editar Libros
-router.post('/edit', async(req, res) =>{
+router.post('/edit/:id', async(req, res) =>{
   try{
-    const {Id_Libros,Id_Autores, Titulo, Editorial, Fecha_P, Genero} = req.body
-    await db.query (
-      " UPDATE Libros SET Titulo = ?, Editorial = ?, Fecha_P = ?, Genero = ? WHERE Id_Libros = ?",
-      [Id_Autores,Titulo, Editorial, Fecha_P, Genero, req.params.id])
+    const { Id_Autores, Titulo, Editorial, Fecha_P, Genero} = req.body;
+    const {id} = req.params;
+
+    await db.query(
+      "UPDATE Libros SET Id_Autores = ?, Titulo = ?, Editorial = ?, Fecha_P = ?, Genero = ? WHERE Id_Libros = ?",
+      [ Id_Autores, Titulo, Editorial, Fecha_P, Genero, id ]
+    );
       res.redirect('/')
-  }catch(error){
-    console.error(error)
-  }
-});
+    }catch(error){
+      console.error(error)
+    }
+  });
 
 //Ruta De Ver Catalogo
 router.get('/catalogo', async(req, res) =>{
@@ -100,15 +107,6 @@ router.get('/catalogo', async(req, res) =>{
   }
 });
 
-//vender{}
-router.get('/vender/:id', async(req, res) =>{
-  try{
-    await db.query("UPDATE Libros SET Estado = 'Vendido' WHERE Id_Libros = ?", [req.params.id])
-    res.redirect('/productos')
-  }catch(error){
-    console.error(error)
-  }
-});
 
 //Ruta De Eliminar Libros
 router.get('/delete/:id', async(req, res) =>{

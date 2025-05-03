@@ -56,9 +56,9 @@ INSERT INTO Libros (Id_Autores, Titulo, Editorial, Fecha_P, Genero) VALUES
         Libros.Estado
       FROM Libros
       INNER JOIN autores ON Libros.Id_Autores = autores.Id_Autores
-      WHERE Libros.Estado = 'Disponible'
+      WHERE Libros.Estado = 'Disponible';
     
 
-
+SELECT * FROM libros; 
 
 
