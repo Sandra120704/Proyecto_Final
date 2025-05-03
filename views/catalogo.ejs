@@ -19,12 +19,6 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/create">Crear Libro</a>
           </li>
-          <li class="nav-item">  
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/create">Crear Libro</a></li>
-            </ul>
-          </li>
         </ul>
         <form class="d-flex" role="search">
           <input class="form-control me-2 rounded-pill" type="search" placeholder="Buscar Libros" aria-label="Search">
@@ -82,7 +76,7 @@
           <option value="Ficcion">Ficcion</option>
           <option value="Dramatico">Dramatico</option>
           <option value="Cientifico">Cientifico</option>
-          <option value="Dictactico">Dicdactico</option>
+          <option value="Dictactico">Didactico</option>
         </select>
       </div>
 
@@ -101,7 +95,7 @@
      
    <div class="container">
 
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4" id="bookList">
     <div class="col">
       <div class="card h-100 shadow-sm">
         <img src="img/libro1.jpeg" class="card-img-top" alt="Imagen del libro" style="height: 250px; object-fit: cover;">
@@ -120,7 +114,7 @@
     </div>
     <div class="col">
       <div class="card h-200">
-        <img src="img\libro2.jpg" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
+        <img src="img/libro2.jpg" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
         <div class="card-body">
           <h5 class="card-title">La Odisea</h5>
           <p class="card-text">
@@ -133,7 +127,7 @@
         </div>
       </div>
         <div class="card-footer">
-          <small class="text-body-secondary">Actualziado hace 5 minutos</small>
+          <small class="text-body-secondary">Actualizado hace 5 minutos</small>
         </div>
       </div>
     <div class="col">
@@ -157,9 +151,9 @@
   </div>
 
 
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4" >
     <div class="col">
-      <div class="ca  rd h-100">
+      <div class="card h-100">
         <img src="img/libro4.jpeg" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
         <div class="card-body">
           <h5 class="card-title">El Mundo es Ancho y Ajeno</h5>
@@ -192,7 +186,7 @@
           </div> 
         </div>
         <div class="card-footer">
-          <small class="text-body-secondary">Last updated 3 mins ago</small>
+          <small class="text-body-secondary">Actualizado hace 5 minutos</small>
         </div>
       </div>
     <div class="col">
@@ -215,7 +209,7 @@
       </div>
   </div>
 
-  <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-md-3 g-4" >
     <div class="col">
       <div class="card h-100">
         <img src="img/libro7.jpeg" class="card-img-top" alt="..." style="height: 250px; object-fit: cover;">
@@ -272,81 +266,78 @@
 
 <!-- Script para mostrar los libros filtrados -->
 <script>
+  const booksList = document.getElementById('booksList');
   const productSearch = document.getElementById('productSearch');
   const categorySearch = document.getElementById('categorySearch');
   const priceSort = document.getElementById('priceSort');
-  const bookList = document.getElementById('booksList');
 
-const books = [
-  { title : "El Principito", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro1.jpeg" },
-  { title : "La Odisea", author : "Rick Riordan", price : 15.99, category : "Dramatico", image : "img/libro2.jpeg" },
-  { title : "Los Rios Profundos", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro3.jpeg" },
-  { title : "El Mundo es Ancho y Ajeno", author : "Rick Riordan", price : 15.99, category : "Dramatico", image : "img/libro4.jpeg" },
-  { title : "La Casa Verde", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro5.jpeg" },
-  { title : "Todas las Sangres", author : "Rick Riordan", price : 15.99, category : "Dramatico", image : "img/libro6.jpeg" },
+  const books = [
+  { title : "El Principito", author : "Rick Riordan", price : 25.99, category : "Ficcion", image : "img/libro1.jpeg" },
+  { title : "La Odisea", author : "Rick Riordan", price : 35.99, category : "Dramatico", image : "img/libro2.jpg" },
+  { title : "Los Rios Profundos", author : "Rick Riordan", price : 10.99, category : "Ficcion", image : "img/libro3.jpeg" },
+  { title : "El Mundo es Ancho y Ajeno", author : "Rick Riordan", price : 5.99, category : "Ficcion", image : "img/libro4.jpeg" },
+  { title : "La Casa Verde", author : "Rick Riordan", price : 45.99, category : "Ficcion", image : "img/libro5.jpeg" },
+  { title : "Todas las Sangres", author : "Rick Riordan", price : 25.99, category : "Dramatico", image : "img/libro6.jpeg" },
   { title : "Un Mundo para Julius", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro7.jpeg" },
-  { title : "No Una, Sino Muchas Muertes", author : "Rick Riordan", price : 15.99, category : "Dramatico", image : "img/libro8.jpeg" },
-  { title : "Redoble por Rancas", author : "Rick Riordan", price : 15.99, category : "Ficcion", image : "img/libro9.jpeg" },
-  { title : "La Guerra Silenciosa", author : "Rick Riordan", price : 15.99, category : "Dramatico", image : "img/libro10.jpeg" },
-  { title : "Ciencia Fácil", author : "Jane Doe", price : 20.00, category : "Cientifico", image : "img/libro11.jpeg" },
-{ title : "El Universo", author : "Carl Sagan", price : 25.00, category : "Cientifico", image : "img/libro12.jpeg" },
-
+  { title : "No Una, Sino Muchas Muertes", author : "Rick Riordan", price : 55.99, category : "Dramatico", image : "img/libro8.jpeg" },
+  { title : "Redoble por Rancas", author : "Rick Riordan", price : 45.99, category : "Ficcion", image : "img/libro9.jpeg" },
+  { title : "La Guerra Silenciosa", author : "Rick Riordan", price : 12.99, category : "Dramatico", image : "img/Libro10.jpeg" },
+  { title : "Ciencia Fácil", author : "Jane Doe", price : 43.00, category : "Cientifico", image : "img/libro11.jpeg" },
+  { title : "El Universo", author : "Carl Sagan", price : 25.00, category : "Cientifico", image : "img/libro12.jpeg" },
 ];
-
-//mostrar todos los libros
-function displayBooks() {
-  let filteredBooks = books;
-
-
-  if (productSearch.value) {
-    filteredBooks = filteredBooks.filter(book => {
-      book.title.toLowerCase().includes(productSearch.value.toLowerCase())
-      });
-    }
-
-  //categoria de libros
-  
-  if (categorySearch.value) {
-    filteredBooks = filteredBooks.filter(book => 
-    book.category === categorySearch.value);
-  }
-
-  //ordenar por precio
-
-   if (priceSort.value == 'asc') {
-    filteredBooks.sort((a, b) => a.price - b.price);
-  }else if (priceSort.value == 'desc') {
-   filteredBooks.sort((a, b) => b.price - a.price);
-  }
-  //mostrar libros filtrados
-  bookList.innerHTML = "";
-  if (filteredBooks.length === 0) {
-     booksList.innerHTML = "<p>No hay libros que coincidan con tus criterios de búsqueda</p>";
-  }else{
-    filteredBooks.forEach(book => {
-     const bookCard = `
-      <div class="col-md-4 mb-4">
-              <div class="card">
-                <img src="${book.image}" class="card-img-top" alt="${book.title}">
-                <div class="card-body">
-                  <h5 class="card-title">${book.title}</h5>
-                  <p class="card-text">Categoría: ${book.category}</p>
-                  <p><strong>$${book.price}</strong></p>
-                  <a href="#" class="btn btn-primary">Añadir al carrito</a>
-                </div>
-              </div>
-            </div>
+//Renderizar los libros en la página
+function renderBooks(filteredBooks) {
+  bookList.innerHTML = '';
+  filteredBooks.forEach(book => {
+    const col = document.createElement("div");
+    col.className = "col";
+    col.innerHTML = `
+    <div class="card h-100 shadow-sm">
+        <img src="${book.image}" class="card-img-top" alt="${book.title}" style="height: 250px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">${book.title}</h5>
+          <p class="card-text">Categoría: ${book.category} <br>Precio: S/ ${book.price.toFixed(2)}</p>
+        </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-success mb-2 w-100">Añadir al Carrito</button>
+          <button class="btn btn-primary w-100">Comprar</button>
+        </div>
+      </div>
       `;
-      bookList.innerHTML += bookCard;
-    });
-  }
-  //eventos de los filtros
-  productSearch.addEventListener('input', displayBooks);
-  categorySearch.addEventListener('change', displayBooks);
-  priceSort.addEventListener('change', displayBooks);
+      bookList.appendChild(col);
+  });
+}
+//ordenar los libros por precio
+function filterAndRender() {
+  let filtered = books;
 
-  displayBooks();
+//filtar por texto
+const searchText = productSearch.value.toLowerCase();
+if (searchText) {
+  filtered = filtered.filter(book => book.title.toLowerCase().includes(searchText));
+}
+//categoria de libros
+const category = categorySearch.value;
+if (category) {
+  filtered = filtered.filter(book => book.category === category);
+}
+//ordenar por precio
+const sortOrder = priceSort.value;
+filtered.sort((a, b) =>{
+  return sortOrder === 'asc' ? a.price - b.price : b.price - a.price;
+
+});
+//renderizar los libros filtrados
+renderBooks(filtered);
+}
+//eventos de los filtros
+productSearch.addEventListener('input', filterAndRender);
+categorySearch.addEventListener('change', filterAndRender);
+priceSort.addEventListener('change', filterAndRender);
+
+renderBooks(books);
 </script>
+
   
   <footer class="text-center">
     <p>Copyright © 2023 SENATI - Proyecto Final</p>
